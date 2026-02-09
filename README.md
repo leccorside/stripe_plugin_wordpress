@@ -26,6 +26,20 @@ Plugin WordPress profissional para doações via Stripe, com suporte a **cartão
 6. **Para doações recorrentes por boleto:** configure o cron do servidor para rodar diariamente. Veja a seção "Cron para boletos recorrentes" abaixo.
 7. Insira o shortcode `[donation_stripe]` em qualquer página ou post para exibir o formulário.
 
+## Clonando do Git (Instalação Manual)
+
+Se você clonou este repositório diretamente do GitHub, a pasta `vendor` (dependências) não estará incluída. Você precisa instalá-la manualmente:
+
+1. Acesse a pasta do plugin via terminal:
+   ```bash
+   cd wp-content/plugins/plugin_stripe_beit_jacob
+   ```
+2. Instale as dependências usando o Composer:
+   ```bash
+   composer install --no-dev
+   ```
+   *Nota: Se você não tiver acesso SSH ou Composer no servidor, faça este processo em seu computador local e envie a pasta `vendor` gerada para o servidor via FTP.*
+
 ## Funcionalidades Principais
 
 ### Conversão Automática de Moeda (USD/BRL)

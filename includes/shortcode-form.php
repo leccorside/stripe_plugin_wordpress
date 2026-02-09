@@ -76,31 +76,32 @@ final class Donation_Stripe_Shortcode_Form
             'nonce'            => wp_create_nonce('donation_stripe_submit'),
             'thankYouPageUrl'  => !empty($options['thank_you_page_url']) ? esc_url($options['thank_you_page_url']) : '',
             'i18n'             => [
-                'donationAmount'     => __('Donation amount', 'donation-stripe'),
-                'donationFrequency'  => __('Donation frequency', 'donation-stripe'),
-                'oneTime'            => __('Uma única vez', 'donation-stripe'),
+                'donationAmount'     => __('Donation Amount', 'donation-stripe'),
+                'donationFrequency'  => __('Donation Frequency', 'donation-stripe'),
+                'oneTime'            => __('One-time', 'donation-stripe'),
                 'monthly'            => __('Monthly', 'donation-stripe'),
                 'annual'             => __('Annual', 'donation-stripe'),
-                'email'              => __('E-mail address', 'donation-stripe'),
-                'cardholderName'     => __('Cardholder\'s name', 'donation-stripe'),
-                'card'               => __('Cartão', 'donation-stripe'),
+                'email'              => __('Email Address', 'donation-stripe'),
+                'cardholderName'     => __('Cardholder Name', 'donation-stripe'),
+                'card'               => __('Card', 'donation-stripe'),
                 'boleto'             => __('Boleto', 'donation-stripe'),
-                'cardNumber'         => __('Número do cartão', 'donation-stripe'),
-                'expiry'             => __('Data de validade', 'donation-stripe'),
-                'cvc'                => __('Código de segurança', 'donation-stripe'),
-                'country'            => __('País', 'donation-stripe'),
-                'cpfCnpj'            => __('CPF ou CNPJ', 'donation-stripe'),
-                'countryRegion'      => __('País ou região', 'donation-stripe'),
-                'addressLine1'       => __('Linha 1 do endereço', 'donation-stripe'),
-                'addressLine2'       => __('Linha 2 do endereço', 'donation-stripe'),
-                'city'               => __('Cidade', 'donation-stripe'),
-                'state'              => __('Estado', 'donation-stripe'),
-                'postalCode'         => __('Código postal', 'donation-stripe'),
+                'cardNumber'         => __('Card Number', 'donation-stripe'),
+                'expiry'             => __('Expiration Date', 'donation-stripe'),
+                'cvc'                => __('Security Code', 'donation-stripe'),
+                'country'            => __('Country', 'donation-stripe'),
+                'cpfCnpj'            => __('Tax ID (CPF/CNPJ)', 'donation-stripe'),
+                'countryRegion'      => __('Country or Region', 'donation-stripe'),
+                'addressLine1'       => __('Address Line 1', 'donation-stripe'),
+                'addressLine2'       => __('Address Line 2', 'donation-stripe'),
+                'city'               => __('City', 'donation-stripe'),
+                'state'              => __('State', 'donation-stripe'),
+                'postalCode'         => __('Postal Code', 'donation-stripe'),
                 'donate'              => __('Donate', 'donation-stripe'),
-                'legalText'          => __('Ao fornecer seus dados de cartão, você permite que SINAGOGA BEIT JACOB faça a cobrança para pagamentos futuros em conformidade com os respectivos termos.', 'donation-stripe'),
-                'required'           => __('Campo obrigatório.', 'donation-stripe'),
-                'invalidEmail'       => __('E-mail inválido.', 'donation-stripe'),
-                'invalidAmount'      => __('Informe um valor válido.', 'donation-stripe'),
+                'legalText'          => __('By providing your card information, you allow SINAGOGA BEIT JACOB to charge your card for future payments in accordance with their terms.', 'donation-stripe'),
+                'required'           => __('Required field.', 'donation-stripe'),
+                'invalidEmail'       => __('Invalid email.', 'donation-stripe'),
+                'invalidAmount'      => __('Enter a valid amount.', 'donation-stripe'),
+                'message_error'      => __('Error processing payment.', 'donation-stripe'),
             ],
         ]);
 
@@ -124,19 +125,19 @@ final class Donation_Stripe_Shortcode_Form
     public static function render_thank_you_shortcode(array $atts = []): string
     {
         $is_boleto = isset($_GET['method']) && $_GET['method'] === 'boleto';
-        $title     = isset($atts['title']) ? sanitize_text_field($atts['title']) : __('Obrigado pela sua doação!', 'donation-stripe');
+        $title     = isset($atts['title']) ? sanitize_text_field($atts['title']) : __('Thank you for your donation!', 'donation-stripe');
         if (isset($atts['message'])) {
             $message = sanitize_textarea_field($atts['message']);
         } else {
             $message = $is_boleto
-                ? __('Sua doação será processada assim que o pagamento do boleto for confirmado. Agradecemos seu apoio.', 'donation-stripe')
-                : __('Sua doação foi processada com sucesso. Agradecemos seu apoio.', 'donation-stripe');
+                ? __('Your donation will be processed as soon as the boleto payment is confirmed. We appreciate your support.', 'donation-stripe')
+                : __('Your donation has been successfully processed. We appreciate your support.', 'donation-stripe');
         }
 
         $check_icon = '<svg class="donation-stripe-thank-you-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
 
         $home_url = home_url('/');
-        $back_label = isset($atts['back_label']) ? sanitize_text_field($atts['back_label']) : __('Voltar à home', 'donation-stripe');
+        $back_label = isset($atts['back_label']) ? sanitize_text_field($atts['back_label']) : __('Back to Home', 'donation-stripe');
 
         ob_start();
         ?>
