@@ -1,0 +1,97 @@
+/**
+ * Estilos do painel administrativo do plugin Doação Stripe.
+ * Tabs e tabela de status de doações.
+ *
+ * @package Donation_Stripe
+ */
+
+.donation-stripe-tab-content {
+    margin-top: 20px;
+}
+
+.donation-stripe-status-table-wrap {
+    margin-top: 20px;
+}
+
+.donation-stripe-status-table-wrap table {
+    margin-top: 10px;
+}
+
+.donation-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.donation-status-pago,
+.donation-status-paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.donation-status-processando,
+.donation-status-processing {
+    background: #fd7e14 !important;
+    color: #ffffff !important;
+}
+
+.donation-status-processando-pagamento {
+    background: #fd7e14 !important;
+    color: #ffffff !important;
+}
+
+.donation-status-aguardando,
+.donation-status-aguardando-pagamento,
+.donation-status-aguardando-confirmação {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+/* Status de Erro e Cancelamento */
+.donation-status-cancelado,
+.donation-status-canceled,
+.donation-status-cartão-recusado,
+.donation-status-cartao-recusado,
+.donation-status-saldo-insuficiente,
+.donation-status-cartão-expirado,
+.donation-status-cartao-expirado,
+.donation-status-cvc-incorreto,
+.donation-status-número-inválido,
+.donation-status-numero-invalido {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.donation-status-erro-ao-buscar,
+.donation-status-desconhecido {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+.donation-stripe-search-wrap {
+    margin: 20px 0;
+}
+
+.donation-stripe-search-wrap input[type="search"] {
+    margin-right: 8px;
+}
+
+.tablenav {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.tablenav-pages .button.disabled {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.tablenav-pages .button {
+    margin-left: 2px;
+    min-width: 32px;
+    text-align: center;
+}
