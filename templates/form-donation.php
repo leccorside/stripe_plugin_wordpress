@@ -15,248 +15,9 @@ $enable_boleto = !empty($options['enable_boleto']);
 $enable_monthly = !empty($options['enable_recurring_monthly']);
 $enable_annual = !empty($options['enable_recurring_annual']);
 
-// Lista completa de países
-$all_countries = [
-    'AF' => 'Afghanistan',
-    'AL' => 'Albania',
-    'DZ' => 'Albania',
-    'AS' => 'American Samoa',
-    'AD' => 'Andorra',
-    'AO' => 'Angola',
-    'AI' => 'Anguilla',
-    'AQ' => 'Antarctica',
-    'AG' => 'Antigua and Barbuda',
-    'AR' => 'Argentina',
-    'AM' => 'Armenia',
-    'AW' => 'Aruba',
-    'AU' => 'Australia',
-    'AT' => 'Austria',
-    'AZ' => 'Azerbaijan',
-    'BS' => 'Bahamas',
-    'BH' => 'Bahrain',
-    'BD' => 'Bangladesh',
-    'BB' => 'Barbados',
-    'BY' => 'Belarus',
-    'BE' => 'Belgium',
-    'BZ' => 'Belize',
-    'BJ' => 'Belize',
-    'BM' => 'Bermuda',
-    'BT' => 'Bhutan',
-    'BO' => 'Bolivia',
-    'BA' => 'Bosnia and Herzegovina',
-    'BW' => 'Botswana',
-    'BV' => 'Bouvet Island',
-    'BR' => 'Brazil',
-    'IO' => 'British Indian Ocean Territory',
-    'BN' => 'Brunei Darussalam',
-    'BG' => 'Bulgaria',
-    'BF' => 'Burkina Faso',
-    'BI' => 'Burundi',
-    'KH' => 'Cambodia',
-    'CM' => 'Cameroon',
-    'CA' => 'Canada',
-    'CV' => 'Cape Verde',
-    'KY' => 'Cayman Islands',
-    'CF' => 'Central African Republic',
-    'TD' => 'Chad',
-    'CL' => 'Chile',
-    'CN' => 'China',
-    'CX' => 'Christmas Island',
-    'CC' => 'Cocos (Keeling) Islands',
-    'CO' => 'Colombia',
-    'KM' => 'Comoros',
-    'CG' => 'Congo',
-    'CD' => 'Congo, the Democratic Republic of the',
-    'CK' => 'Cook Islands',
-    'CR' => 'Costa Rica',
-    'CI' => 'Cote D\'Ivoire',
-    'HR' => 'Croatia',
-    'CU' => 'Cuba',
-    'CY' => 'Cyprus',
-    'CZ' => 'Czech Republic',
-    'DK' => 'Denmark',
-    'DJ' => 'Djibouti',
-    'DM' => 'Djibouti',
-    'DO' => 'Dominican Republic',
-    'EC' => 'Ecuador',
-    'EG' => 'Egypt',
-    'SV' => 'El Salvador',
-    'GQ' => 'Equatorial Guinea',
-    'ER' => 'Eritrea',
-    'EE' => 'Estonia',
-    'ET' => 'Ethiopia',
-    'FK' => 'Falkland Islands (Malvinas)',
-    'FO' => 'Faroe Islands',
-    'FJ' => 'Fiji',
-    'FI' => 'Finland',
-    'FR' => 'France',
-    'GF' => 'French Guiana',
-    'PF' => 'French Polynesia',
-    'TF' => 'French Southern Territories',
-    'GA' => 'Gabon',
-    'GM' => 'Gambia',
-    'GE' => 'Georgia',
-    'DE' => 'Germany',
-    'GH' => 'Ghana',
-    'GI' => 'Gibraltar',
-    'GR' => 'Greece',
-    'GL' => 'Greenland',
-    'GD' => 'Grenada',
-    'GP' => 'Guadeloupe',
-    'GU' => 'Guam',
-    'GT' => 'Guatemala',
-    'GN' => 'Guinea',
-    'GW' => 'Guinea-Bissau',
-    'GY' => 'Guyana',
-    'HT' => 'Haiti',
-    'HM' => 'Heard Island and Mcdonald Islands',
-    'VA' => 'Holy See (Vatican City State)',
-    'HN' => 'Honduras',
-    'HK' => 'Hong Kong',
-    'HU' => 'Hungary',
-    'IS' => 'Iceland',
-    'IN' => 'India',
-    'ID' => 'Indonesia',
-    'IR' => 'Iran, Islamic Republic of',
-    'IQ' => 'Iraq',
-    'IE' => 'Ireland',
-    'IL' => 'Israel',
-    'IT' => 'Italy',
-    'JM' => 'Jamaica',
-    'JP' => 'Japan',
-    'JO' => 'Jordan',
-    'KZ' => 'Kazakhstan',
-    'KE' => 'Kenya',
-    'KI' => 'Kiribati',
-    'KP' => 'Korea, Democratic People\'s Republic of',
-    'KR' => 'Korea, Republic of',
-    'KW' => 'Kuwait',
-    'KG' => 'Kyrgyzstan',
-    'LA' => 'Lao People\'s Democratic Republic',
-    'LV' => 'Latvia',
-    'LB' => 'Lebanon',
-    'LS' => 'Lesotho',
-    'LR' => 'Liberia',
-    'LY' => 'Libyan Arab Jamahiriya',
-    'LI' => 'Liechtenstein',
-    'LT' => 'Lithuania',
-    'LU' => 'Luxembourg',
-    'MO' => 'Macao',
-    'MK' => 'Macedonia, the Former Yugoslav Republic of',
-    'MG' => 'Madagascar',
-    'MW' => 'Malawi',
-    'MY' => 'Malaysia',
-    'MV' => 'Maldives',
-    'ML' => 'Mali',
-    'MT' => 'Malta',
-    'MH' => 'Marshall Islands',
-    'MQ' => 'Martinique',
-    'MR' => 'Mauritania',
-    'MU' => 'Mauritius',
-    'YT' => 'Mayotte',
-    'MX' => 'Mexico',
-    'FM' => 'Micronesia, Federated States of',
-    'MD' => 'Moldova, Republic of',
-    'MC' => 'Monaco',
-    'MN' => 'Mongolia',
-    'MS' => 'Montserrat',
-    'MA' => 'Morocco',
-    'MZ' => 'Mozambique',
-    'MM' => 'Myanmar',
-    'NA' => 'Namibia',
-    'NR' => 'Nauru',
-    'NP' => 'Nepal',
-    'NL' => 'Netherlands',
-    'AN' => 'Netherlands Antilles',
-    'NC' => 'New Caledonia',
-    'NZ' => 'New Zealand',
-    'NI' => 'Nicaragua',
-    'NE' => 'Niger',
-    'NG' => 'Nigeria',
-    'NU' => 'Niue',
-    'NF' => 'Norfolk Island',
-    'MP' => 'Northern Mariana Islands',
-    'NO' => 'Norway',
-    'OM' => 'Oman',
-    'PK' => 'Pakistan',
-    'PW' => 'Palau',
-    'PS' => 'Palestinian Territory, Occupied',
-    'PA' => 'Panama',
-    'PG' => 'Papua New Guinea',
-    'PY' => 'Paraguay',
-    'PE' => 'Peru',
-    'PH' => 'Philippines',
-    'PN' => 'Pitcairn',
-    'PL' => 'Poland',
-    'PT' => 'Portugal',
-    'PR' => 'Puerto Rico',
-    'QA' => 'Qatar',
-    'RE' => 'Reunion',
-    'RO' => 'Romania',
-    'RU' => 'Russian Federation',
-    'RW' => 'Rwanda',
-    'SH' => 'Saint Helena',
-    'KN' => 'Saint Kitts and Nevis',
-    'LC' => 'Saint Lucia',
-    'PM' => 'Saint Pierre and Miquelon',
-    'VC' => 'Saint Vincent and the Grenadines',
-    'WS' => 'Samoa',
-    'SM' => 'San Marino',
-    'ST' => 'Sao Tome and Principe',
-    'SA' => 'Saudi Arabia',
-    'SN' => 'Senegal',
-    'CS' => 'Serbia and Montenegro',
-    'SC' => 'Seychelles',
-    'SL' => 'Sierra Leone',
-    'SG' => 'Singapore',
-    'SK' => 'Slovakia',
-    'SI' => 'Slovenia',
-    'SB' => 'Solomon Islands',
-    'SO' => 'Somalia',
-    'ZA' => 'South Africa',
-    'GS' => 'South Georgia and the South Sandwich Islands',
-    'ES' => 'Spain',
-    'LK' => 'Sri Lanka',
-    'SD' => 'Sudan',
-    'SR' => 'Suriname',
-    'SJ' => 'Svalbard and Jan Mayen',
-    'SZ' => 'Swaziland',
-    'SE' => 'Sweden',
-    'CH' => 'Switzerland',
-    'SY' => 'Syrian Arab Republic',
-    'TW' => 'Taiwan, Province of China',
-    'TJ' => 'Tajikistan',
-    'TZ' => 'Tanzania, United Republic of',
-    'TH' => 'Thailand',
-    'TL' => 'Timor-Leste',
-    'TG' => 'Togo',
-    'TK' => 'Tokelau',
-    'TO' => 'Tonga',
-    'TT' => 'Trinidad and Tobago',
-    'TN' => 'Tunisia',
-    'TR' => 'Turkey',
-    'TM' => 'Turkmenistan',
-    'TC' => 'Turks and Caicos Islands',
-    'TV' => 'Tuvalu',
-    'UG' => 'Uganda',
-    'UA' => 'Ukraine',
-    'AE' => 'United Arab Emirates',
-    'GB' => 'United Kingdom',
-    'US' => 'United States',
-    'UM' => 'United States Minor Outlying Islands',
-    'UY' => 'Uruguay',
-    'UZ' => 'Uzbekistan',
-    'VU' => 'Vanuatu',
-    'VE' => 'Venezuela',
-    'VN' => 'Viet Nam',
-    'VG' => 'Virgin Islands, British',
-    'VI' => 'Virgin Islands, U.S.',
-    'WF' => 'Wallis and Futuna',
-    'EH' => 'Western Sahara',
-    'YE' => 'Yemen',
-    'ZM' => 'Zambia',
-    'ZW' => 'Zimbabwe'
-];
+// Lista completa de países (agora vindo do controller)
+$all_countries = $countries ?? [];
+
 ?>
 
 <div class="donation-stripe-form-wrapper" id="donation-stripe-form-wrapper">
@@ -267,7 +28,7 @@ $all_countries = [
                 <span class="donation-stripe-loading-icon donation-stripe-loading-icon-card"></span>
                 <span class="donation-stripe-loading-icon donation-stripe-loading-icon-boleto"></span>
             </div>
-            <p class="donation-stripe-fullscreen-loading-text">Processing Payment...</p>
+            <p class="donation-stripe-fullscreen-loading-text"><?php echo esc_html($t['payment_processing']); ?></p>
         </div>
     </div>
 
@@ -276,15 +37,16 @@ $all_countries = [
 
         <!-- Donation amount -->
         <div class="donation-stripe-field">
-            <label class="donation-stripe-label" for="donation-stripe-amount-preset">Donation Amount</label>
+        <div class="donation-stripe-field">
+            <label class="donation-stripe-label" for="donation-stripe-amount-preset"><?php echo esc_html($t['donation_amount']); ?></label>
             <p class="donation-stripe-currency-notice" style="font-size: 0.85em; color: #666; margin-bottom: 8px;">
-                Note: All donation amounts are in US Dollars (USD).
+                <?php echo esc_html($t['currency_notice']); ?>
             </p>
             <div class="donation-stripe-amount-buttons">
                 <button type="button" class="donation-stripe-amount-btn active" data-amount="25" aria-pressed="true">$25</button>
                 <button type="button" class="donation-stripe-amount-btn" data-amount="35" aria-pressed="false">$35</button>
                 <button type="button" class="donation-stripe-amount-btn" data-amount="50" aria-pressed="false">$50</button>
-                <button type="button" class="donation-stripe-amount-btn donation-stripe-amount-btn-other" data-amount="other" aria-pressed="false">Other</button>
+                <button type="button" class="donation-stripe-amount-btn donation-stripe-amount-btn-other" data-amount="other" aria-pressed="false"><?php echo esc_html($t['other']); ?></button>
             </div>
             <div class="donation-stripe-amount-custom-wrap donation-stripe-hidden" id="donation-stripe-amount-custom-wrap">
                 <span class="donation-stripe-currency-symbol">$</span>
@@ -296,24 +58,24 @@ $all_countries = [
 
         <!-- Donation frequency -->
         <div class="donation-stripe-field">
-            <label class="donation-stripe-label">Donation Frequency</label>
-            <div class="donation-stripe-frequency-group" role="group" aria-label="Donation frequency">
-                <button type="button" class="donation-stripe-frequency-btn active" data-frequency="once" aria-pressed="true">One-time</button>
-                <button type="button" class="donation-stripe-frequency-btn" data-frequency="monthly" aria-pressed="false" <?php echo $enable_monthly ? '' : ' disabled'; ?>>Monthly</button>
-                <button type="button" class="donation-stripe-frequency-btn" data-frequency="annual" aria-pressed="false" <?php echo $enable_annual ? '' : ' disabled'; ?>>Annual</button>
+            <label class="donation-stripe-label"><?php echo esc_html($t['donation_frequency']); ?></label>
+            <div class="donation-stripe-frequency-group" role="group" aria-label="<?php echo esc_attr($t['donation_frequency']); ?>">
+                <button type="button" class="donation-stripe-frequency-btn active" data-frequency="once" aria-pressed="true"><?php echo esc_html($t['frequency_once']); ?></button>
+                <button type="button" class="donation-stripe-frequency-btn" data-frequency="monthly" aria-pressed="false" <?php echo $enable_monthly ? '' : ' disabled'; ?>><?php echo esc_html($t['frequency_monthly']); ?></button>
+                <button type="button" class="donation-stripe-frequency-btn" data-frequency="annual" aria-pressed="false" <?php echo $enable_annual ? '' : ' disabled'; ?>><?php echo esc_html($t['frequency_annual']); ?></button>
             </div>
             <input type="hidden" name="frequency" id="donation-stripe-frequency" value="once" />
         </div>
 
         <!-- E-mail -->
         <div class="donation-stripe-field">
-            <label class="donation-stripe-label" for="donation-stripe-email">Email Address</label>
+            <label class="donation-stripe-label" for="donation-stripe-email"><?php echo esc_html($t['email']); ?></label>
             <input type="email" class="donation-stripe-input" id="donation-stripe-email" name="email" required autocomplete="email" />
         </div>
 
         <!-- Cardholder name -->
         <div class="donation-stripe-field">
-            <label class="donation-stripe-label" for="donation-stripe-cardholder-name">Cardholder Name</label>
+            <label class="donation-stripe-label" for="donation-stripe-cardholder-name"><?php echo esc_html($t['cardholder_name']); ?></label>
             <input type="text" class="donation-stripe-input" id="donation-stripe-cardholder-name" name="cardholder_name" required autocomplete="cc-name" />
         </div>
 
@@ -322,11 +84,11 @@ $all_countries = [
             <div class="donation-stripe-payment-method-group" role="group" aria-label="Payment method">
                 <button type="button" class="donation-stripe-payment-method-btn active" data-method="card" aria-pressed="true">
                     <span class="donation-stripe-payment-icon donation-stripe-icon-card" aria-hidden="true"></span>
-                    <span>Card</span>
+                    <span><?php echo esc_html($t['card']); ?></span>
                 </button>
                 <button type="button" class="donation-stripe-payment-method-btn" data-method="boleto" aria-pressed="false" style="display:none !important;" <?php echo $enable_boleto ? '' : ' disabled'; ?>>
                     <span class="donation-stripe-payment-icon donation-stripe-icon-boleto" aria-hidden="true"></span>
-                    <span>Boleto</span>
+                    <span><?php echo esc_html($t['boleto']); ?></span>
                 </button>
             </div>
             <input type="hidden" name="payment_method" id="donation-stripe-payment-method" value="card" />
@@ -335,7 +97,7 @@ $all_countries = [
         <!-- Card fields (visible when Cartão selected). Stripe Elements montados via JS (PCI). -->
         <div class="donation-stripe-card-fields" id="donation-stripe-card-fields">
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-card-element">Card Number</label>
+                <label class="donation-stripe-label" for="donation-stripe-card-element"><?php echo esc_html($t['card_number']); ?></label>
                 <div class="donation-stripe-card-number-wrap">
                     <div id="donation-stripe-card-element" class="donation-stripe-stripe-element"></div>
                     <span class="donation-stripe-card-brands" aria-hidden="true">
@@ -346,11 +108,11 @@ $all_countries = [
             </div>
             <div class="donation-stripe-field-row">
                 <div class="donation-stripe-field">
-                    <label class="donation-stripe-label" for="donation-stripe-expiry-element">Expiration Date</label>
+                    <label class="donation-stripe-label" for="donation-stripe-expiry-element"><?php echo esc_html($t['expiration_date']); ?></label>
                     <div id="donation-stripe-expiry-element" class="donation-stripe-stripe-element"></div>
                 </div>
                 <div class="donation-stripe-field">
-                    <label class="donation-stripe-label" for="donation-stripe-cvc-element">Security Code</label>
+                    <label class="donation-stripe-label" for="donation-stripe-cvc-element"><?php echo esc_html($t['security_code']); ?></label>
                     <div class="donation-stripe-cvc-wrap">
                         <div id="donation-stripe-cvc-element" class="donation-stripe-stripe-element"></div>
                         <span class="donation-stripe-cvc-hint" aria-hidden="true"></span>
@@ -358,15 +120,16 @@ $all_countries = [
                 </div>
             </div>
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-country">Country</label>
+                <label class="donation-stripe-label" for="donation-stripe-country"><?php echo esc_html($t['country']); ?></label>
                 <select class="donation-stripe-input donation-stripe-select" id="donation-stripe-country" name="country">
-                    <option value="BR" selected>Brazil</option>
+                    <option value="BR" selected><?php echo esc_html($all_countries['BR'] ?? 'Brazil'); ?></option>
                     <?php
-                    foreach ($all_countries as $code => $name) {
-                        if ($code === 'BR') continue;
-                        echo '<option value="' . esc_attr($code) . '">' . esc_html($name) . '</option>';
-                    }
-                    ?>
+foreach ($all_countries as $code => $name) {
+    if ($code === 'BR')
+        continue;
+    echo '<option value="' . esc_attr($code) . '">' . esc_html($name) . '</option>';
+}
+?>
                 </select>
             </div>
         </div>
@@ -374,41 +137,42 @@ $all_countries = [
         <!-- Boleto fields (visible when Boleto selected) -->
         <div class="donation-stripe-boleto-fields donation-stripe-hidden" id="donation-stripe-boleto-fields">
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-cpf-cnpj">Tax ID (CPF/CNPJ)</label>
+                <label class="donation-stripe-label" for="donation-stripe-cpf-cnpj"><?php echo esc_html($t['tax_id']); ?></label>
                 <input type="text" class="donation-stripe-input" id="donation-stripe-cpf-cnpj" name="cpf_cnpj" placeholder="000.000.000-00" autocomplete="off" />
             </div>
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-country-boleto">Country or Region</label>
+                <label class="donation-stripe-label" for="donation-stripe-country-boleto"><?php echo esc_html($t['country_region']); ?></label>
                 <select class="donation-stripe-input donation-stripe-select" id="donation-stripe-country-boleto" name="country_boleto">
-                    <option value="BR" selected>Brazil</option>
+                    <option value="BR" selected><?php echo esc_html($all_countries['BR'] ?? 'Brazil'); ?></option>
                 </select>
             </div>
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-address-line1">Address Line 1</label>
+                <label class="donation-stripe-label" for="donation-stripe-address-line1"><?php echo esc_html($t['address_line1']); ?></label>
                 <input type="text" class="donation-stripe-input" id="donation-stripe-address-line1" name="address_line1" autocomplete="address-line1" />
             </div>
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-address-line2">Address Line 2</label>
-                <input type="text" class="donation-stripe-input" id="donation-stripe-address-line2" name="address_line2" placeholder="Apt., suite, unit number, etc. (optional)" autocomplete="address-line2" />
+                <label class="donation-stripe-label" for="donation-stripe-address-line2"><?php echo esc_html($t['address_line2']); ?></label>
+                <input type="text" class="donation-stripe-input" id="donation-stripe-address-line2" name="address_line2" placeholder="<?php echo esc_attr($t['address_line2_placeholder']); ?>" autocomplete="address-line2" />
             </div>
             <div class="donation-stripe-field">
-                <label class="donation-stripe-label" for="donation-stripe-city">City</label>
+                <label class="donation-stripe-label" for="donation-stripe-city"><?php echo esc_html($t['city']); ?></label>
                 <input type="text" class="donation-stripe-input" id="donation-stripe-city" name="city" autocomplete="address-level2" />
             </div>
             <div class="donation-stripe-field-row">
                 <div class="donation-stripe-field">
-                    <label class="donation-stripe-label" for="donation-stripe-state">State</label>
+                    <label class="donation-stripe-label" for="donation-stripe-state"><?php echo esc_html($t['state']); ?></label>
                     <select class="donation-stripe-input donation-stripe-select" id="donation-stripe-state" name="state">
                         <?php
-                        $states_br = ['AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia', 'CE' => 'Ceará', 'DF' => 'Distrito Federal', 'ES' => 'Espírito Santo', 'GO' => 'Goiás', 'MA' => 'Maranhão', 'MT' => 'Mato Grosso', 'MS' => 'Mato Grosso do Sul', 'MG' => 'Minas Gerais', 'PA' => 'Pará', 'PB' => 'Paraíba', 'PR' => 'Paraná', 'PE' => 'Pernambuco', 'PI' => 'Piauí', 'RJ' => 'Rio de Janeiro', 'RN' => 'Rio Grande do Norte', 'RS' => 'Rio Grande do Sul', 'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina', 'SP' => 'São Paulo', 'SE' => 'Sergipe', 'TO' => 'Tocantins'];
-                        foreach ($states_br as $uf => $name) {
-                            echo '<option value="' . esc_attr($uf) . '"' . selected($uf, 'GO', false) . '>' . esc_html($name) . '</option>';
-                        }
-                        ?>
+// $states_br agora vem do controller
+$states_br = $states_br ?? [];
+foreach ($states_br as $uf => $name) {
+    echo '<option value="' . esc_attr($uf) . '"' . selected($uf, 'GO', false) . '>' . esc_html($name) . '</option>';
+}
+?>
                     </select>
                 </div>
                 <div class="donation-stripe-field">
-                    <label class="donation-stripe-label" for="donation-stripe-postal-code">Postal Code</label>
+                    <label class="donation-stripe-label" for="donation-stripe-postal-code"><?php echo esc_html($t['postal_code']); ?></label>
                     <input type="text" class="donation-stripe-input" id="donation-stripe-postal-code" name="postal_code" autocomplete="postal-code" />
                 </div>
             </div>
@@ -416,20 +180,20 @@ $all_countries = [
 
         <!-- Legal text -->
         <p class="donation-stripe-legal" id="donation-stripe-legal">
-            By providing your card information, you allow SINAGOGA BEIT JACOB to charge your card for future payments in accordance with their terms.
+            <?php echo esc_html($t['legal_text']); ?>
         </p>
 
         <!-- Submit -->
         <div class="donation-stripe-field donation-stripe-submit-wrap">
             <button type="submit" class="donation-stripe-submit" id="donation-stripe-submit">
-                <span class="donation-stripe-submit-text">Donate</span>
-                <span class="donation-stripe-submit-loading donation-stripe-hidden" aria-hidden="true">Processing...</span>
+                <span class="donation-stripe-submit-text"><?php echo esc_html($t['donate']); ?></span>
+                <span class="donation-stripe-submit-loading donation-stripe-hidden" aria-hidden="true"><?php echo esc_html($t['processing']); ?></span>
             </button>
         </div>
 
         <!-- Messages -->
         <div class="donation-stripe-message donation-stripe-message-success donation-stripe-hidden" id="donation-stripe-message-success" role="alert">
-            <?php echo esc_html($options['message_success'] ?? 'Thank you! Your donation has been successfully processed.'); ?>
+            <?php echo esc_html($options['message_success'] ?? $t['success_message']); ?>
         </div>
         <div class="donation-stripe-message donation-stripe-message-error donation-stripe-hidden" id="donation-stripe-message-error" role="alert"></div>
     </form>
